@@ -1,4 +1,5 @@
 import app from "./app.js";
+import { jest } from '@jest/globals';
 import supertest from "supertest";
 
 const request = supertest(app);
