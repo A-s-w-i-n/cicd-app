@@ -7,19 +7,26 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    strategy:
-      matrix:
-        node-version: [20.x]
-       
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Latest Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 'node'  # This will use the latest stable version
         cache: 'npm'
-    - run: npm ci
-    - run: npm test
+    - name: Environment Info
+      run: |
+        echo "Node version: $(node --version)"
+        echo "NPM version: $(npm --version)"
+        echo "PM2 version: $(pm2 --version)"
+        echo "Current directory: $(pwd)"
+        ls -la
+    - name: Install Dependencies
+      run: npm ci
+    - name: Run Tests
+      run: npm test
     - name: Restart PM2 process
       run: |
+        pm2 describe backendserver || echo "backendserver not found"
         pm2 restart backendserver || pm2 start backendserver
+        pm2 list
