@@ -8,5 +8,18 @@
     "start": "node src",
     "test": "jest src/app.test.js"
   },
-  "type": "module"
+  "type": "module",
+  "jest": {
+  "transform": {
+    "^.+\\.js$": "babel-jest"
+  },
+  "testEnvironment": "node",
+  "extensionsToTreatAsEsm": [".js"],
+  "globals": {
+    "jest": {
+      "useESM": true
+    }
+  }
 }
+}
+
