@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: self-hosted  # Use the GitHub self-hosted runner on your EC2 instance
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Install PM2 globally
+        run: npm install -g pm2
+
+      - name: Deploy with PM2
+        run: |
+          pm2 restart backendserver || pm2 start src/index.js --name backendserver
+          pm2 save
+
+      - name: Check PM2 status
+        run: pm2 status
