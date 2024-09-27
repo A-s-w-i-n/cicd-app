@@ -10,6 +10,6 @@
     "test": "jest src/app.test.js"
   },
   "jest": {
-    "verbose": true
+    "extensionsToTreatAsEsm": [".js"]
   }
 }
