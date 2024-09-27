@@ -1,6 +1,7 @@
 export default {
-    moduleFileExtensions: ['js', 'json', 'node'],
+    testEnvironment: 'node',
     transform: {
-      '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+      '^.+\\.js$': 'babel-jest', // This is necessary if you are using Babel
     },
+    moduleFileExtensions: ['js'], // Recognize .js file extensions
   };
