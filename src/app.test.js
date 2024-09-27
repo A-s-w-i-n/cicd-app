@@ -1,11 +1,10 @@
 import app from "./app.js";
-import { jest } from '@jest/globals';
 import supertest from "supertest";
 
 const request = supertest(app);
 
 describe("/test endpoint", () => {
-  it("should return a response", async () => {
+it("should return a response", async () => {
     const response = await request.get("/test");
     expect(response.status).toBe(200);
     expect(response.text).toBe("Hello world");
