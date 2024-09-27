@@ -10,16 +10,21 @@
   },
   "type": "module",
   "jest": {
-  "transform": {
-    "^.+\\.js$": "babel-jest"
-  },
-  "testEnvironment": "node",
-  "extensionsToTreatAsEsm": [".js"],
-  "globals": {
-    "jest": {
-      "useESM": true
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [
+      ".js"
+    ],
+    "globals": {
+      "jest": {
+        "useESM": true
+      }
     }
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.25.4",
+    "babel-jest": "^29.7.0"
   }
 }
-}
-
